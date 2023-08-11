@@ -1,0 +1,20 @@
+####################### INSTRUCCIONES DESPLIEGUE SOLUCION WEB #####################
+
+#1- Ejecute la siguiente instruccion para crear una network privada en donde se alojara la solucion 
+docker network create --driver bridge --subnet 192.0.0.1/16 privateNetwork
+
+#2- Ejecute la siguiente instruccion para crear el volumen de datos de joomla
+docker volume create data-volumen
+
+#3- Ejecute la siguiente instruccion para crear la base de datos de la solucion MYSQL-JOOMLA
+
+#NOTA: Solo reemplace la palabra RUTA, en la etiqueta source por la ubicacion en donde desea montar la DB
+
+docker run -d --restart=always --name joomladb -e MYSQL_ROOT_PASSWORD=rootpassword -e MYSQL_USER=user_db -e MYSQL_PASSWORD=userdbjsbr -e MYSQL_DATABASE=joomla --mount type=bind,source=/RUTA/database-data,target=/var/lib/mysql --network privateNetwork mysql:5.7
+
+#4- Ejecute la siguiente instruccion para crear la instancia de Joomla y asi, poder gestionar sitios web
+
+docker run -d --restart=always --name joomlaWEB -v data-volumen:/var/www/html -p 8081:80 -e JOOMLA_DB_USER=user_db -e JOOMLA_DB_PASSWORD=userdbjsbr -e JOOMLA_DB_HOST=joomladb:3306 --network privateNetwork joomla:4
+
+#5- Compruebe que la solucion haya quedado desplegada ingresando al siguiente link
+http://localhost:8081/
