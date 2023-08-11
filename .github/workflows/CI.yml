@@ -23,7 +23,7 @@ jobs:
         
     - name: Quality check with SonarCloud
       env:
-        SONAR_TOKEN: c45c28c06af4a0fa2cad42fea7457ac4a075921d
+        SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
       run: 
         mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=juanitoxx_cardAPI
         
