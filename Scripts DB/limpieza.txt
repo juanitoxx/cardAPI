@@ -1,0 +1,12 @@
+####################### INSTRUCCIONES DE LIMPIEZA DE SOLUCION WEB #################
+
+#1- Ejecute las siguientes instrucciones para detener todas los contenedores 
+docker stop joomladb
+docker stop joomlaWEB
+
+#2- Ejecute las siguientes instrucciones para eliminar todos los contenedores
+docker rm joomladb
+docker rm joomlaWEB
+
+#3- Ejecute la siguiente instruccion para eliminar el volumen creado
+docker volume rm data-volumen

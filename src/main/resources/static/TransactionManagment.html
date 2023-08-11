@@ -1,0 +1,75 @@
+<html>
+<head>
+ <title>Spring boot and Angularjs APP</title>
+<style>
+.username.ng-valid {
+	background-color: lightgreen;
+}
+
+.username.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
+
+.username.ng-dirty.ng-invalid-minlength {
+	background-color: yellow;
+}
+
+.email.ng-valid {
+	background-color: lightgreen;
+}
+
+.email.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
+
+.email.ng-dirty.ng-invalid-email {
+	background-color: yellow;
+}
+</style>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link href="css/app.css" rel="stylesheet"></link>
+</head>
+<body ng-app="crudApp" class="ng-cloak">
+	<div class="generic-container" ng-controller="TransactionController as ctrl">
+		<div class="panel panel-default">
+			<!-- Default panel contents -->
+			<div class="panel-heading">
+				<span class="lead">Lista de tarjetas </span>
+			</div>
+			<div class="tablecontainer">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>PAN</th>
+							<th>Número de referencia</th>
+							<th>Dirección de Compra</th>
+							<th>Estado de la transacción</th>
+							<th>Fecha de la transacción</th>
+							<th width="20%"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="u in ctrl.transactions">
+							<td><span ng-bind="u.pan"></span></td>
+							<td><span ng-bind="u.referenceNumber"></span></td>
+							<td><span ng-bind="u.purchasingAddress"></span></td>
+							<td><span ng-bind="u.stateTransaction"></span></td>
+							<td><span ng-bind="u.dateTransaction"></span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-resource.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-route.js"></script>
+	<script src="js/app/app.js"></script>
+	<script src="js/app/service/transaction_service.js"></script>
+	<script src="js/app/controller/transaction_controller.js"></script>
+</body>
+</html>
