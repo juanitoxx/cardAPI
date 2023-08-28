@@ -4,7 +4,7 @@ LABEL key="CardAPI"
 
 ### Variable de entorno para ruta del artefacto
 ENV SERVER_HOME=/opt/spring-boot/
-ENV JAR_FILE=cardAPI-0.0.1-SNAPSHOT.jar
+ENV JAR_FILE=app.jar
 
 ### Directorio principal del artefacto
 RUN mkdir SERVER_HOME

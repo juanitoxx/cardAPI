@@ -29,7 +29,7 @@ jobs:
       run: mvn package
 
     - name: Copy Jar file
-      run: JAR_NAME=$(ls build/libs)cp build/libs/$JAR_NAME JAR_NAME
+      run: JAR_NAME=$(ls /home/runner/work/cardAPI/cardAPI/target)cp /home/runner/work/cardAPI/cardAPI/target/$JAR_NAME app.jar
       
   deployment:
     runs-on: ubuntu-latest
