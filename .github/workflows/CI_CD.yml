@@ -57,6 +57,7 @@ jobs:
     - name: Deploy to Render
       uses: sws2apps/render-deployment@v1.4.0
       with:
+        serviceId: ${{secrets.RENDER_SERVICE_ID}}
         apiKey: ${{secrets.RENDER_API_KEY }}
       
 
