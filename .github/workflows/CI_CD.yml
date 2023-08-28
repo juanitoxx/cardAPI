@@ -45,11 +45,11 @@ jobs:
           push: true
           tags: ${{secrets.DOCKER_TAG}}
 
-
-  deployment:
+  deploy_dev:
+    name: Deploy to Dev Environment for PR
     runs-on: ubuntu-latest
-    name: Deploy Job
     needs: build
+    if: startsWith(github.head_ref, 'dev/')
     
     steps:
     - name: Deploy to Render
@@ -57,6 +57,20 @@ jobs:
       with:
         service-id: ${{secrets.RENDER_SERVICE_ID}}
         api-key: ${{secrets.RENDER_API_KEY }}
+
+  deploy_prod:
+    name: Deploy to Prod Environment for PR
+    runs-on: ubuntu-latest
+    if: startsWith(github.head_ref, 'release/')
+    
+    steps:
+    - name: Deploy to Render
+      uses: johnbeynon/render-deploy-action@v0.0.8
+      with:
+        service-id: ${{secrets.RENDER_SERVICE_ID}}
+        api-key: ${{secrets.RENDER_API_KEY }}
+
+
       
 
       
