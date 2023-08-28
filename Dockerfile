@@ -1,10 +1,11 @@
+FROM maven:3.6.3 AS maven
+WORKDIR /build/libs/
+COPY . /build/libs/
+RUN mvn package
 
 ### Cambiar la imagen linux para despligue 
 FROM amazoncorretto:11
 LABEL key="CardAPI"
-
-### Ruta final del artefacto
-ADD build/libs /opt/spring-boot
 
 ### Variable de entorno para ruta del artefacto
 ENV SERVER_HOME=/opt/spring-boot/
@@ -12,7 +13,7 @@ ENV JAR_FILE=cardAPI-0.0.1-SNAPSHOT.jar
 
 ### Directorio principal del artefacto
 WORKDIR SERVER_HOME
-
+COPY --from=maven /build/libs/target/$JAR_FILE $SERVER_HOME
 
 #### Variables de entorno para desplegar en zona horaria de Bogotá 
 ENV TZ=America/Bogota
