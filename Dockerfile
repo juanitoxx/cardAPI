@@ -8,7 +8,7 @@ ENV JAR_FILE=cardAPI-0.0.1-SNAPSHOT.jar
 
 ### Directorio principal del artefacto
 RUN mkdir SERVER_HOME
-COPY target/$JAR_FILE $SERVER_HOME/$JAR_FILE
+COPY target/$JAR_FILE $SERVER_HOME$JAR_FILE
 WORKDIR SERVER_HOME
 
 #### Variables de entorno para desplegar en zona horaria de Bogotá 
