@@ -7,10 +7,12 @@ LABEL key="CardAPI"
 ADD build/libs /opt/spring-boot
 
 ### Variable de entorno para ruta del artefacto
-ENV SERVER_HOME /opt/spring-boot
+ENV SERVER_HOME=/opt/spring-boot/
+ENV JAR_FILE=cardAPI-0.0.1-SNAPSHOT.jar
 
 ### Directorio principal del artefacto
-WORKDIR /opt/spring-boot
+WORKDIR SERVER_HOME
+
 
 #### Variables de entorno para desplegar en zona horaria de Bogotá 
 ENV TZ=America/Bogota
