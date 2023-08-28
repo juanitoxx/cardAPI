@@ -45,6 +45,7 @@ jobs:
           push: true
           tags: ${{secrets.DOCKER_TAG}}
 
+
   deployment:
     runs-on: ubuntu-latest
     name: Deploy Job
